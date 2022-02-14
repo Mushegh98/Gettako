@@ -1,0 +1,125 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+}
+
+android {
+    compileSdkVersion compileVersion
+    buildToolsVersion buildVersion
+
+    defaultConfig {
+        applicationId "com.marketplace.gettako"
+        minSdkVersion minVersion
+        targetSdkVersion targetVersion
+        versionCode appVersionCode
+        versionName appVersionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion compose_version
+    }
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+}
+
+dependencies {
+
+    //modules
+    implementation project(path: ':entity')
+    implementation project(path: ':data')
+    implementation project(path: ':domain')
+
+    //Compose
+    implementation supportDependencies.composeUI
+    implementation supportDependencies.composeMaterial
+    implementation supportDependencies.composeToolingPreview
+    implementation supportDependencies.composeJUnit
+    implementation supportDependencies.composeUITooling
+    implementation supportDependencies.composeActivity
+    implementation supportDependencies.composeNavigation
+
+    //coroutines
+    implementation supportDependencies.coroutines
+    implementation supportDependencies.coroutinesAndroid
+
+    //retrofit
+    implementation supportDependencies.retrofit
+    implementation supportDependencies.retrofitConverterGson
+
+    //okhttp
+    implementation supportDependencies.squareupOkhttp
+    implementation supportDependencies.squareupOkhttpLoggingInterceptor
+
+    //room
+    implementation supportDependencies.roomRuntime
+    kapt supportDependencies.roomCompiler
+
+    //koin
+    implementation supportDependencies.koinAndroid
+    implementation supportDependencies.koinJavaCompatibility
+    implementation supportDependencies.koinCompose
+
+//    //play-services
+//    implementation supportDependencies.gmsPlayServicesLocation
+//    implementation supportDependencies.gmpPlayServicesVision
+
+    //lifecycle
+    implementation supportDependencies.lifecycleLiveData
+    implementation supportDependencies.lifecycleCommon
+    implementation supportDependencies.lifecycle
+    implementation supportDependencies.lifecycleViewmodel
+    implementation supportDependencies.lifycycleRunTime
+
+    // stetho
+    implementation supportDependencies.stetho
+    implementation supportDependencies.stethoOk
+
+    //navigation
+    implementation supportDependencies.navigationFragment
+    implementation supportDependencies.navigationUi
+
+//    //anco
+//    implementation supportDependencies.ancoCommons
+//    implementation supportDependencies.ancoDesign
+
+    //test
+    testImplementation supportDependencies.junitAndroid
+    androidTestImplementation supportDependencies.junit
+    androidTestImplementation supportDependencies.espressoCore
+
+    implementation supportDependencies.coreKtx
+    implementation supportDependencies.material
+    implementation supportDependencies.kotlinxSerialization
+    implementation supportDependencies.activityktx
+    implementation supportDependencies.fragmentktx
+    implementation supportDependencies.appcompat
+    implementation supportDependencies.constraintlayout
+    implementation supportDependencies.recyclerview
+    implementation supportDependencies.legacySupport
+
+}

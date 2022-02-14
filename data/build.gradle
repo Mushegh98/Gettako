@@ -1,0 +1,90 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'kotlin-android-extensions'
+}
+
+android {
+    compileSdkVersion compileVersion
+    buildToolsVersion buildVersion
+
+    defaultConfig {
+        minSdkVersion minVersion
+        targetSdkVersion targetVersion
+        versionCode appVersionCode
+        versionName appVersionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    //modules
+    implementation project(path: ':entity')
+
+    //testing
+    testImplementation supportDependencies.junit
+    androidTestImplementation supportDependencies.junitAndroid
+    androidTestImplementation supportDependencies.espressoCore
+
+    //coroutines
+    implementation supportDependencies.coroutines
+    implementation supportDependencies.roomWithCoroutines
+
+    //retrofit
+    implementation supportDependencies.retrofit
+    implementation supportDependencies.retrofitConverterGson
+
+    //okhttp
+    implementation supportDependencies.squareupOkhttp
+    implementation supportDependencies.squareupOkhttpLoggingInterceptor
+
+    //room
+    implementation supportDependencies.roomRuntime
+    kapt supportDependencies.roomCompiler
+    implementation supportDependencies.roomRuntime
+    kapt supportDependencies.roomCompiler
+
+    //stetho
+    implementation supportDependencies.stetho
+    implementation supportDependencies.stethoOk
+
+    //koin
+    implementation supportDependencies.koinAndroid
+
+//    //firebase
+//    implementation platform(supportDependencies.firebaseBom)
+//    implementation supportDependencies.firebaseConfig
+//    implementation supportDependencies.firebaseCrashlytics
+//    implementation supportDependencies.firebaseAnalytics
+
+//    //play-services
+//    implementation supportDependencies.gmsPlayServicesLocation
+//    implementation supportDependencies.gmpPlayServicesVision
+
+    implementation supportDependencies.appcompat
+    implementation supportDependencies.coreKtx
+    implementation supportDependencies.moshiConverter
+//    implementation supportDependencies.JWT
+//    implementation supportDependencies.androidLibrariesMaps
+    implementation supportDependencies.material
+//    implementation supportDependencies.picasso
+//    implementation supportDependencies.mapsUtils
+}
