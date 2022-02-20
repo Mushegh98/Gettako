@@ -62,6 +62,7 @@ dependencies {
     implementation supportDependencies.composeUITooling
     implementation supportDependencies.composeActivity
     implementation supportDependencies.composeNavigation
+    implementation supportDependencies.composeConstraintLayout
 
     //coroutines
     implementation supportDependencies.coroutines
